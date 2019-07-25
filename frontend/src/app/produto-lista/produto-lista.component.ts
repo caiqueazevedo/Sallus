@@ -13,18 +13,18 @@ export class ProdutoListaComponent implements OnInit {
 
   produtos: Observable<Produto[]>;
 
-  constructor(private pessoaService: ProdutoService, private router: Router) { }
+  constructor(private produtoService: ProdutoService, private router: Router) { }
 
   ngOnInit() {
     this.reloadData();
   }
 
   reloadData() {
-    this.produtos = this.pessoaService.getProdutos();
+    this.produtos = this.produtoService.getProdutos();
   }
 
   deleteProduto(id: number) {
-    this.pessoaService.deleteProduto(id).subscribe(
+    this.produtoService.deleteProduto(id).subscribe(
       data => {
         console.log(data);
         this.reloadData();
