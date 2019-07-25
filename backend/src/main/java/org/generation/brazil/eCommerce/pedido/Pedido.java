@@ -1,7 +1,6 @@
 package org.generation.brazil.eCommerce.pedido;
 
 import lombok.Data;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -26,4 +25,27 @@ public class Pedido{
     @Column(name = "valor_pedido")
     private BigDecimal valorPedido;
 
+    public Long getIdPedido() {
+        return idPedido;
+    }
+
+    public void setIdPedido(Long idPedido) {
+        this.idPedido = idPedido;
+    }
+
+    public Date getDataPedido() {
+        return dataPedido;
+    }
+
+    public void setDataPedido(Date dataPedido) {
+        this.dataPedido = dataPedido;
+    }
+
+    public BigDecimal getValorPedido() {
+        return valorPedido;
+    }
+
+    public void setValorPedido(BigDecimal valorPedido) {
+        this.valorPedido = valorPedido;
+    }
 }

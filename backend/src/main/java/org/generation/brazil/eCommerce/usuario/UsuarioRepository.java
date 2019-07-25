@@ -1,4 +1,4 @@
-package org.generation.brazil.eCommerce.cliente;
+package org.generation.brazil.eCommerce.usuario;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -10,19 +10,19 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Repository
-public interface ClienteRepository extends JpaRepository<Cliente, Long> {
-    // SELECT * FROM cliente WHERE nome = :nome;
-    List<Cliente> findByNome(String nome);
+public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
+    // SELECT * FROM usuario WHERE nome = :nome;
+    List<Usuario> findByNome(String nome);
 
-    // SELECT * FROM cliente WHERE data_nascimento = :dataNascimento;
-    List<Cliente> findByDataNascimento(LocalDate dataNascimento);
+    // SELECT * FROM usuario WHERE data_nascimento = :dataNascimento;
+    List<Usuario> findByDataNascimento(LocalDate dataNascimento);
 
-    // SELECT * FROM cliente WHERE nome = :nome AND data_nascimento = :dataNascimento;
-    List<Cliente> findByNomeAndDataNascimento(String nome, LocalDate dataNascimento);
+    // SELECT * FROM usuario WHERE nome = :nome AND data_nascimento = :dataNascimento;
+    List<Usuario> findByNomeAndDataNascimento(String nome, LocalDate dataNascimento);
 
     @Modifying
     @Transactional
-    @Query("UPDATE Cliente c SET c.nome = :nome WHERE c.id = :id")
+    @Query("UPDATE Usuario c SET c.nome = :nome WHERE c.id = :id")
     void updateNomeById(@Param("nome") String nome, @Param("id") Long id);
 
     @Modifying
