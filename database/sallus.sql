@@ -1,21 +1,21 @@
--- CRIANDO AS TABELAS
-DROP DATABASE IF EXISTS projeto_ecommerce;
+-- CRIAÇÃO DE TABELAS
+DROP DATABASE IF EXISTS sallus;
 
-CREATE DATABASE projeto_ecommerce;
+CREATE DATABASE sallus;
 
-USE projeto_ecommerce;
+USE sallus;
 
-CREATE TABLE cliente(
-	id_cliente			INTEGER						NOT NULL,
+CREATE TABLE usuario(
+	id_usuario			INTEGER						NOT NULL,
 	nome				VARCHAR(100)				NOT NULL,
-    cpf					VARCHAR(14)		UNIQUE		NOT NULL,
+    documento			VARCHAR(14)		UNIQUE		NOT NULL,
 	data_nascimento		DATE 						NOT NULL,
 	data_cadastro		DATE 						NOT NULL,
 	SEXO				CHAR(1)			
 );
 
 CREATE TABLE cadastro(
-    id_cliente			INTEGER		 				NOT NULL,
+    id_usuario			INTEGER		 				NOT NULL,
     login				VARCHAR(20)		UNIQUE		NOT NULL,
     email				VARCHAR(255)	UNIQUE		NOT NULL,
     senha 				VARCHAR(20)					NOT NULL
@@ -23,14 +23,14 @@ CREATE TABLE cadastro(
 
 CREATE TABLE fone(
 	id_fone				INTEGER						NOT NULL,
-    id_cliente			INTEGER						NOT NULL,
-    numero_fone			VARCHAR(10)		UNIQUE		NOT NULL,
+    id_usuario			INTEGER						NOT NULL,
+    numero_fone			VARCHAR(10)					NOT NULL,
     ddd_fone			CHAR(5)						NOT NULL	
 );
 
 CREATE TABLE endereco(
 	id_endereco			INTEGER						NOT NULL,
-    id_cliente			INTEGER						NOT NULL,
+    id_usuario			INTEGER						NOT NULL,
     id_cidade			INTEGER						NOT NULL,
 	id_tipo				INTEGER						NOT NULL,
     nome_rua			VARCHAR(100)				NOT NULL,
@@ -52,7 +52,7 @@ CREATE TABLE estado(
 
 CREATE TABLE pedido(
 	id_pedido			INTEGER						NOT NULL,
-    id_cliente			INTEGER						NOT NULL,
+    id_usuario			INTEGER						NOT NULL,
     id_status			INTEGER						NOT NULL,
 	id_anuncio			INTEGER						NOT NULL,
     data_pedido			DATE						NOT NULL,
@@ -69,8 +69,7 @@ CREATE TABLE status_pedido(
 CREATE TABLE produto(
 	id_produto			INTEGER						NOT NULL,
     id_categoria		INTEGER						NOT NULL,
-    nome_produto		VARCHAR(100)				NOT NULL,
-    valor_unidade		DECIMAL						NOT NULL
+    nome_produto		VARCHAR(100)				NOT NULL
 );
 
 CREATE TABLE categoria_produto(
@@ -80,17 +79,18 @@ CREATE TABLE categoria_produto(
 
 CREATE TABLE anuncio(
 	id_anuncio			INTEGER						NOT NULL,
-	id_cliente			INTEGER						NOT NULL,
+	id_usuario			INTEGER						NOT NULL,
     id_produto			INTEGER						NOT NULL,
     data_anuncio		TIMESTAMP					NOT NULL,
     titulo				TEXT						NOT NULL,
-    descricao			TEXT						NOT NULL
+    descricao			TEXT						NOT NULL,
+    valor_unidade		DECIMAL						NOT NULL
 );
--- CRIANDO AS PRIMARY KEYS
+-- CRIAÇÃO DE PRIMARY KEYS
 
-ALTER TABLE cliente
+ALTER TABLE usuario
 ADD CONSTRAINT PK_CLIENTE
-PRIMARY KEY (id_cliente);
+PRIMARY KEY (id_usuario);
 
 ALTER TABLE cadastro
 ADD CONSTRAINT PK_CADASTRO
@@ -133,22 +133,22 @@ ALTER TABLE anuncio
 ADD CONSTRAINT	PK_ANUNCIO
 PRIMARY KEY (id_anuncio);
 
--- CRIANDO FOREIGN KEYS
+-- CRIAÇÃO DE FOREIGN KEYS
 
 ALTER TABLE cadastro
 ADD CONSTRAINT FK_CADASTRO
-FOREIGN KEY (id_cliente)
-REFERENCES cliente (id_cliente);
+FOREIGN KEY (id_usuario)
+REFERENCES usuario (id_usuario);
 
 ALTER TABLE fone
 ADD CONSTRAINT FK_FONE
-FOREIGN KEY (id_cliente)
-REFERENCES cliente (id_cliente);
+FOREIGN KEY (id_usuario)
+REFERENCES usuario (id_usuario);
 
 ALTER TABLE endereco
 ADD CONSTRAINT FK_ENDERECO
-FOREIGN KEY (id_cliente)
-REFERENCES cliente (id_cliente);
+FOREIGN KEY (id_usuario)
+REFERENCES usuario (id_usuario);
 
 ALTER TABLE endereco
 ADD CONSTRAINT FK_ENDERECO_CIDADE
@@ -167,9 +167,9 @@ FOREIGN KEY (id_status)
 REFERENCES status_pedido (id_status);
 
 ALTER TABLE pedido
-ADD CONSTRAINT FK_PEDIDO_CLIENTE
-FOREIGN KEY (id_cliente)
-REFERENCES cliente (id_cliente);
+ADD CONSTRAINT FK_PEDIDO_USUARIO
+FOREIGN KEY (id_usuario)
+REFERENCES usuario (id_usuario);
 
 ALTER TABLE pedido
 ADD CONSTRAINT FK_PEDIDO_ANUNCIO
@@ -187,11 +187,11 @@ FOREIGN KEY (id_produto)
 REFERENCES produto (id_produto);
 
 ALTER TABLE anuncio
-ADD CONSTRAINT FK_ANUNCIO_CLIENTE
-FOREIGN KEY (id_cliente)
-REFERENCES cliente (id_cliente);
+ADD CONSTRAINT FK_ANUNCIO_USUARIO
+FOREIGN KEY (id_usuario)
+REFERENCES usuario (id_usuario);
 
--- INSERÇÃO DE DADOS
+-- INSERÇÃO DE DADOS FIXOS
 
 INSERT INTO estado
 	(sigla_estado, nome_estado)
@@ -265,8 +265,6 @@ INSERT INTO categoria_produto VALUES
     (4, 'Equipamentos para Banho'),
     (5, 'Colchões e Almofadas'),
     (6, 'Órteses e Próteses');
-
-SELECT * FROM cidade;
 
 
 
