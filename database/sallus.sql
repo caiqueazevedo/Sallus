@@ -37,11 +37,7 @@ CREATE TABLE endereco(
     nome_bairro			VARCHAR(100)				NOT NULL,
     complemento			VARCHAR(100)
 );
-    
-CREATE TABLE tipo_endereco(
-	id_tipo				INTEGER						NOT NULL,
-	nome_tipo			VARCHAR(30)					NOT NULL        
-);
+
     
 CREATE TABLE cidade(
 	id_cidade			INTEGER						NOT NULL,
@@ -58,6 +54,7 @@ CREATE TABLE pedido(
 	id_pedido			INTEGER						NOT NULL,
     id_cliente			INTEGER						NOT NULL,
     id_status			INTEGER						NOT NULL,
+	id_anuncio			INTEGER						NOT NULL,
     data_pedido			DATE						NOT NULL,
     valor_pedido		DECIMAL						NOT NULL
     
@@ -65,15 +62,9 @@ CREATE TABLE pedido(
 
 CREATE TABLE status_pedido(
 	id_status			INTEGER						NOT NULL,
-    status_nome				VARCHAR(30)					NOT NULL
+    status_nome			VARCHAR(30)					NOT NULL
 );
 
-CREATE TABLE itens(
-	id_pedido			INTEGER						NOT NULL,
-    id_produto			INTEGER						NOT NULL,
-	quantidade_produto	INTEGER						NOT NULL,
-    preco_itens			DECIMAL						NOT NULL
-);
 
 CREATE TABLE produto(
 	id_produto			INTEGER						NOT NULL,
@@ -88,12 +79,12 @@ CREATE TABLE categoria_produto(
 );
 
 CREATE TABLE anuncio(
-	id_anuncio				INTEGER					NOT NULL,
-	id_cliente				INTEGER					NOT NULL,
-    id_produto				INTEGER					NOT NULL,
-    data_anuncio			TIMESTAMP				NOT NULL,
-    titulo					TEXT					NOT NULL,
-    descricao				TEXT					NOT NULL
+	id_anuncio			INTEGER						NOT NULL,
+	id_cliente			INTEGER						NOT NULL,
+    id_produto			INTEGER						NOT NULL,
+    data_anuncio		TIMESTAMP					NOT NULL,
+    titulo				TEXT						NOT NULL,
+    descricao			TEXT						NOT NULL
 );
 -- CRIANDO AS PRIMARY KEYS
 
@@ -113,10 +104,6 @@ ALTER TABLE endereco
 ADD CONSTRAINT PK_ENDERECO
 PRIMARY KEY (id_endereco);
 
-ALTER TABLE tipo_endereco
-ADD CONSTRAINT PK_TIPO_ENDERECO
-PRIMARY KEY (id_tipo);
-
 ALTER TABLE cidade
 ADD CONSTRAINT PK_CIDADE
 PRIMARY KEY (id_cidade);
@@ -133,9 +120,6 @@ PRIMARY KEY (id_pedido);
 ADD CONSTRAINT PK_STATUS_PEDIDO
 PRIMARY KEY (id_status);
 
-ALTER TABLE itens
-ADD CONSTRAINT PK_ITENS
-PRIMARY KEY (id_pedido, id_produto);
 
 ALTER TABLE produto
 ADD CONSTRAINT PK_PRODUTO
@@ -176,10 +160,6 @@ ADD CONSTRAINT FK_CIDADE
 FOREIGN KEY (sigla_estado)
 REFERENCES estado (sigla_estado);
 
-ALTER TABLE endereco
-ADD CONSTRAINT FK_ENDERECO_TIPO
-FOREIGN KEY (id_tipo)
-REFERENCES tipo_endereco (id_tipo);
 
 ALTER TABLE pedido
 ADD CONSTRAINT FK_PEDIDO_STATUS
@@ -191,15 +171,10 @@ ADD CONSTRAINT FK_PEDIDO_CLIENTE
 FOREIGN KEY (id_cliente)
 REFERENCES cliente (id_cliente);
 
-ALTER TABLE itens
-ADD CONSTRAINT FK_ITENS_PEDIDO
-FOREIGN KEY (id_pedido)
-REFERENCES pedido (id_pedido);
-
-ALTER TABLE itens
-ADD CONSTRAINT FK_ITENS_PRODUTO
-FOREIGN KEY (id_produto)
-REFERENCES produto (id_produto);
+ALTER TABLE pedido
+ADD CONSTRAINT FK_PEDIDO_ANUNCIO
+FOREIGN KEY (id_anuncio)
+REFERENCES anuncio (id_anuncio);
 
 ALTER TABLE produto
 ADD CONSTRAINT FK_PRODUTO
@@ -249,10 +224,49 @@ VALUES
     ('SP', 'São Paulo'),
     ('TO','Tocantins');
     
+INSERT INTO cidade VALUES
+	(1, 'AC', 'Rio Branco'),
+    (2, 'AL', 'Maceió'),
+    (3, 'AP', 'Macapá'),
+    (4, 'AM', 'Manaus'),
+    (5, 'BA', 'Salvador'),
+    (6, 'CE', 'Fortaleza'),
+    (7, 'DF', 'Brasília'),
+    (8, 'ES', 'Vitória'),
+    (9, 'GO', 'Goiânia'),
+    (10, 'MA', 'São Luís'),
+    (11, 'MT', 'Cuiabá'),
+    (12, 'MS', 'Campo Grande'),
+    (13, 'MG', 'Belo Horizonte'),
+    (14, 'PA', 'Belém'),
+    (15, 'PB', 'Jõao Pessoa'),
+    (16, 'PR', 'Curitiba'),
+    (17, 'PE', 'Recife'),
+    (18, 'PI', 'Teresina'),
+    (19, 'RJ', 'Rio de Janiero'),
+    (20, 'RN', 'Natal'),
+    (21, 'RS', 'Porto Alegre'),
+    (22, 'RO', 'Porto Velho'),
+    (23, 'RR', 'Roraima'),
+    (24, 'SC', 'Florianópolis'),
+    (25, 'SE', 'Aracaju'),
+    (26, 'SP', 'São Paulo'),
+    (27, 'TO', 'Palmas');
     
+INSERT INTO status_pedido VALUES
+	(1, 'Concluído'),
+    (2, 'Cancelado'),
+    (3, 'Aberto');
+    
+INSERT INTO categoria_produto VALUES
+	(1, 'Mobilidade'),
+    (2, 'CIntas e Colares'),
+    (3, 'Equipamentos de Segurança'),
+    (4, 'Equipamentos para Banho'),
+    (5, 'Colchões e Almofadas'),
+    (6, 'Órteses e Próteses');
 
-    
-SELECT * FROM estado;
+SELECT * FROM cidade;
 
 
 
