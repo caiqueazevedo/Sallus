@@ -1,0 +1,23 @@
+<h2>Criar Pessoa</h2>
+<div [hidden]="submitted" style="width: 400px;">
+  <form (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="nome">Nome</label>
+      <input type="text" class="form-control" id="nome" required [(ngModel)]="produto.nome" name="nome">
+    </div>
+    <div class="form-group">
+      <label for="valor">Valor</label>
+      <input type="text" class="form-control" id="valor" required [(ngModel)]="produto.valor" name="sobrenome">
+    </div>
+    <div class="form-group">
+      <label for="descricao">Descrição</label>
+      <input type="text" class="form-control" id="descricao" required [(ngModel)]="produto.descricao" name="email">
+    </div>
+    <button type="submit" class="btn btn-success">Salvar</button>
+  </form>
+</div>
+
+<div [hidden]="!submitted">
+  <h4>Enviado com Sucesso!</h4>
+  <!-- <button class="btn btn-success" (click)="newProduto()">Adicionar</button> -->
+</div>
