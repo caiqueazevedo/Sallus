@@ -3030,14 +3030,14 @@ TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
 }
 
 .s-text3 {
-	font-family: Montserrat-Regular;
+	font-family: 'Source Sans Pro',sans-serif;
 	font-size: 15px;
 	color: #555555;
 	line-height: 1.5;
 }
 
 .s-text4 {
-	font-family: Montserrat-Regular;
+	font-family: 'Source Sans Pro',sans-serif;
 	font-size: 15px;
 	color: white;
 	text-transform: uppercase;
@@ -3045,106 +3045,106 @@ TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
 }
 
 .s-text5 {
-	font-family: Montserrat-Regular;
-	font-size: 15px;
+	font-family: 'Source Sans Pro',sans-serif;
+	font-size: 17px;
 	color: #999999;
 	line-height: 1;
 }
 
 .s-text6 {
-	font-family: Montserrat-Regular;
+	font-family: 'Source Sans Pro',sans-serif;
 	font-size: 13px;
 	color: #999999;
 	line-height: 1.8;
 }
 
 .s-text7 {
-	font-family: Montserrat-Regular;
-	font-size: 13px;
+	font-family: 'Source Sans Pro',sans-serif;
+	font-size: 15px;
 	color: #555555;
 	line-height: 1.8;
 }
 
 .s-text8, .s-text8 a {
-	font-family: Montserrat-Regular;
+	font-family: 'Source Sans Pro',sans-serif;
 	font-size: 13px;
 	color: #888888;
 	line-height: 1.8;
 }
 
 .s-text9 {
-	font-family: Montserrat-Regular;
+	font-family: 'Source Sans Pro',sans-serif;
 	font-size: 13px;
 	color: #adadad;
 	line-height: 1.8;
 }
 
 .s-text10 {
-	font-family: Montserrat-Regular;
+	font-family: 'Source Sans Pro',sans-serif;
 	font-size: 13px;
 	color: #cccccc;
 	line-height: 1.8;
 }
 
 .s-text11 {
-	font-family: Montserrat-Italic;
+	font-family: 'Source Sans Pro',sans-serif;
 	font-size: 13px;
 	color: #888888;
 	line-height: 1.8;
 }
 
 .s-text12 {
-	font-family: Montserrat-Bold;
-	font-size: 15px;
+	font-family: 'Source Sans Pro', sans-serif;
+	font-size: 17px;
 	color: #222222;
 	line-height: 1.5;
 	text-transform: uppercase;
 }
 
 .s-text13 {
-	font-family: Montserrat-Regular;
+	font-family: 'Source Sans Pro',sans-serif;
 	font-size: 15px;
 	color: #888888;
 	line-height: 1.8;
 }
 
 .s-text14 {
-	font-family: Montserrat-Regular;
+	font-family: 'Source Sans Pro',sans-serif;
 	font-size: 13px;
 	color: white;
 	text-transform: uppercase;
 }
 
 .s-text15 {
-	font-family: Montserrat-Regular;
+	font-family: 'Source Sans Pro',sans-serif;
 	font-size: 13px;
 	color: #666666;
 	line-height: 1.8;
 }
 
 .s-text16 {
-	font-family: Montserrat-Regular;
+	font-family: 'Source Sans Pro',sans-serif;
 	font-size: 12px;
 	color: #555555;
 	line-height: 1.8;
 }
 
 .s-text17 {
-	font-family: Montserrat-Regular;
+	font-family: 'Source Sans Pro',sans-serif;
 	font-size: 12px;
 	color: #888888;
 	line-height: 1.8;
 }
 
 .s-text18 {
-	font-family: Montserrat-Bold;
+	font-family: 'Source Sans Pro',sans-serif;
 	font-size: 15px;
 	color: #555555;
 	line-height: 1.5;
 }
 
 .s-text19 {
-	font-family: Montserrat-Regular;
+	font-family: 'Source Sans Pro',sans-serif;
 	font-size: 13px;
 	color: #555555;
 	line-height: 1.8;
@@ -3152,21 +3152,21 @@ TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
 }
 
 .s-text20 {
-	font-family: Montserrat-Regular;
+	font-family: 'Source Sans Pro',sans-serif;
 	font-size: 15px;
 	color: #555555;
 	line-height: 1.2;
 }
 
 .s-text21 {
-	font-family: Montserrat-Regular;
+	font-family: 'Source Sans Pro',sans-serif;
 	font-size: 13px;
 	color: white;
 	line-height: 1.8;
 }
 
 .s-text22 {
-	font-family: Montserrat-Regular;
+	font-family: 'Source Sans Pro',sans-serif;
 	font-size: 13px;
 	color: white;
 	line-height: 1.8;
@@ -3713,7 +3713,7 @@ SHAPE SHAPE SHAPE SHAPE SHAPE SHAPE SHAPE SHAPE SHAPE SHAPE
 .bg3 {background-color: rgba(255,255,255,0.95);}
 .bg4 {background-color: #111111;}
 .bg5 {background-color: #f2f2f2;}
-.bg6 {background-color: #f0f0f0;}
+.bg6 {background-color: rgba(172, 222, 215, 0.99);}
 .bg7 {background-color: #333333;}
 .bg8 {background-color: #e6e6e6;}
 
