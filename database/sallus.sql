@@ -1,21 +1,21 @@
--- CRIANDO AS TABELAS
-DROP DATABASE IF EXISTS projeto_ecommerce;
+-- CRIAÇÃO DE TABELAS
+DROP DATABASE IF EXISTS sallus;
 
-CREATE DATABASE projeto_ecommerce;
+CREATE DATABASE sallus;
 
-USE projeto_ecommerce;
+USE sallus;
 
-CREATE TABLE cliente(
-	id_cliente			INTEGER						NOT NULL,
+CREATE TABLE usuario(
+	id_usuario			INTEGER						NOT NULL,
 	nome				VARCHAR(100)				NOT NULL,
-    cpf					VARCHAR(14)		UNIQUE		NOT NULL,
+    documento			VARCHAR(14)		UNIQUE		NOT NULL,
 	data_nascimento		DATE 						NOT NULL,
 	data_cadastro		DATE 						NOT NULL,
 	SEXO				CHAR(1)			
 );
 
 CREATE TABLE cadastro(
-    id_cliente			INTEGER		 				NOT NULL,
+    id_usuario			INTEGER		 				NOT NULL,
     login				VARCHAR(20)		UNIQUE		NOT NULL,
     email				VARCHAR(255)	UNIQUE		NOT NULL,
     senha 				VARCHAR(20)					NOT NULL
@@ -23,25 +23,21 @@ CREATE TABLE cadastro(
 
 CREATE TABLE fone(
 	id_fone				INTEGER						NOT NULL,
-    id_cliente			INTEGER						NOT NULL,
-    numero_fone			VARCHAR(10)		UNIQUE		NOT NULL,
+    id_usuario			INTEGER						NOT NULL,
+    numero_fone			VARCHAR(10)					NOT NULL,
     ddd_fone			CHAR(5)						NOT NULL	
 );
 
 CREATE TABLE endereco(
 	id_endereco			INTEGER						NOT NULL,
-    id_cliente			INTEGER						NOT NULL,
+    id_usuario			INTEGER						NOT NULL,
     id_cidade			INTEGER						NOT NULL,
 	id_tipo				INTEGER						NOT NULL,
     nome_rua			VARCHAR(100)				NOT NULL,
     nome_bairro			VARCHAR(100)				NOT NULL,
     complemento			VARCHAR(100)
 );
-    
-CREATE TABLE tipo_endereco(
-	id_tipo				INTEGER						NOT NULL,
-	nome_tipo			VARCHAR(30)					NOT NULL        
-);
+
     
 CREATE TABLE cidade(
 	id_cidade			INTEGER						NOT NULL,
@@ -56,8 +52,9 @@ CREATE TABLE estado(
 
 CREATE TABLE pedido(
 	id_pedido			INTEGER						NOT NULL,
-    id_cliente			INTEGER						NOT NULL,
+    id_usuario			INTEGER						NOT NULL,
     id_status			INTEGER						NOT NULL,
+	id_anuncio			INTEGER						NOT NULL,
     data_pedido			DATE						NOT NULL,
     valor_pedido		DECIMAL						NOT NULL
     
@@ -65,21 +62,14 @@ CREATE TABLE pedido(
 
 CREATE TABLE status_pedido(
 	id_status			INTEGER						NOT NULL,
-    status_nome				VARCHAR(30)					NOT NULL
+    status_nome			VARCHAR(30)					NOT NULL
 );
 
-CREATE TABLE itens(
-	id_pedido			INTEGER						NOT NULL,
-    id_produto			INTEGER						NOT NULL,
-	quantidade_produto	INTEGER						NOT NULL,
-    preco_itens			DECIMAL						NOT NULL
-);
 
 CREATE TABLE produto(
 	id_produto			INTEGER						NOT NULL,
     id_categoria		INTEGER						NOT NULL,
-    nome_produto		VARCHAR(100)				NOT NULL,
-    valor_unidade		DECIMAL						NOT NULL
+    nome_produto		VARCHAR(100)				NOT NULL
 );
 
 CREATE TABLE categoria_produto(
@@ -88,18 +78,19 @@ CREATE TABLE categoria_produto(
 );
 
 CREATE TABLE anuncio(
-	id_anuncio				INTEGER					NOT NULL,
-	id_cliente				INTEGER					NOT NULL,
-    id_produto				INTEGER					NOT NULL,
-    data_anuncio			TIMESTAMP				NOT NULL,
-    titulo					TEXT					NOT NULL,
-    descricao				TEXT					NOT NULL
+	id_anuncio			INTEGER						NOT NULL,
+	id_usuario			INTEGER						NOT NULL,
+    id_produto			INTEGER						NOT NULL,
+    data_anuncio		TIMESTAMP					NOT NULL,
+    titulo				TEXT						NOT NULL,
+    descricao			TEXT						NOT NULL,
+    valor_unidade		DECIMAL						NOT NULL
 );
--- CRIANDO AS PRIMARY KEYS
+-- CRIAÇÃO DE PRIMARY KEYS
 
-ALTER TABLE cliente
+ALTER TABLE usuario
 ADD CONSTRAINT PK_CLIENTE
-PRIMARY KEY (id_cliente);
+PRIMARY KEY (id_usuario);
 
 ALTER TABLE cadastro
 ADD CONSTRAINT PK_CADASTRO
@@ -112,10 +103,6 @@ PRIMARY KEY (id_fone);
 ALTER TABLE endereco
 ADD CONSTRAINT PK_ENDERECO
 PRIMARY KEY (id_endereco);
-
-ALTER TABLE tipo_endereco
-ADD CONSTRAINT PK_TIPO_ENDERECO
-PRIMARY KEY (id_tipo);
 
 ALTER TABLE cidade
 ADD CONSTRAINT PK_CIDADE
@@ -133,9 +120,6 @@ PRIMARY KEY (id_pedido);
 ADD CONSTRAINT PK_STATUS_PEDIDO
 PRIMARY KEY (id_status);
 
-ALTER TABLE itens
-ADD CONSTRAINT PK_ITENS
-PRIMARY KEY (id_pedido, id_produto);
 
 ALTER TABLE produto
 ADD CONSTRAINT PK_PRODUTO
@@ -149,22 +133,22 @@ ALTER TABLE anuncio
 ADD CONSTRAINT	PK_ANUNCIO
 PRIMARY KEY (id_anuncio);
 
--- CRIANDO FOREIGN KEYS
+-- CRIAÇÃO DE FOREIGN KEYS
 
 ALTER TABLE cadastro
 ADD CONSTRAINT FK_CADASTRO
-FOREIGN KEY (id_cliente)
-REFERENCES cliente (id_cliente);
+FOREIGN KEY (id_usuario)
+REFERENCES usuario (id_usuario);
 
 ALTER TABLE fone
 ADD CONSTRAINT FK_FONE
-FOREIGN KEY (id_cliente)
-REFERENCES cliente (id_cliente);
+FOREIGN KEY (id_usuario)
+REFERENCES usuario (id_usuario);
 
 ALTER TABLE endereco
 ADD CONSTRAINT FK_ENDERECO
-FOREIGN KEY (id_cliente)
-REFERENCES cliente (id_cliente);
+FOREIGN KEY (id_usuario)
+REFERENCES usuario (id_usuario);
 
 ALTER TABLE endereco
 ADD CONSTRAINT FK_ENDERECO_CIDADE
@@ -176,10 +160,6 @@ ADD CONSTRAINT FK_CIDADE
 FOREIGN KEY (sigla_estado)
 REFERENCES estado (sigla_estado);
 
-ALTER TABLE endereco
-ADD CONSTRAINT FK_ENDERECO_TIPO
-FOREIGN KEY (id_tipo)
-REFERENCES tipo_endereco (id_tipo);
 
 ALTER TABLE pedido
 ADD CONSTRAINT FK_PEDIDO_STATUS
@@ -187,19 +167,14 @@ FOREIGN KEY (id_status)
 REFERENCES status_pedido (id_status);
 
 ALTER TABLE pedido
-ADD CONSTRAINT FK_PEDIDO_CLIENTE
-FOREIGN KEY (id_cliente)
-REFERENCES cliente (id_cliente);
+ADD CONSTRAINT FK_PEDIDO_USUARIO
+FOREIGN KEY (id_usuario)
+REFERENCES usuario (id_usuario);
 
-ALTER TABLE itens
-ADD CONSTRAINT FK_ITENS_PEDIDO
-FOREIGN KEY (id_pedido)
-REFERENCES pedido (id_pedido);
-
-ALTER TABLE itens
-ADD CONSTRAINT FK_ITENS_PRODUTO
-FOREIGN KEY (id_produto)
-REFERENCES produto (id_produto);
+ALTER TABLE pedido
+ADD CONSTRAINT FK_PEDIDO_ANUNCIO
+FOREIGN KEY (id_anuncio)
+REFERENCES anuncio (id_anuncio);
 
 ALTER TABLE produto
 ADD CONSTRAINT FK_PRODUTO
@@ -212,11 +187,11 @@ FOREIGN KEY (id_produto)
 REFERENCES produto (id_produto);
 
 ALTER TABLE anuncio
-ADD CONSTRAINT FK_ANUNCIO_CLIENTE
-FOREIGN KEY (id_cliente)
-REFERENCES cliente (id_cliente);
+ADD CONSTRAINT FK_ANUNCIO_USUARIO
+FOREIGN KEY (id_usuario)
+REFERENCES usuario (id_usuario);
 
--- INSERÇÃO DE DADOS
+-- INSERÇÃO DE DADOS FIXOS
 
 INSERT INTO estado
 	(sigla_estado, nome_estado)
@@ -249,10 +224,47 @@ VALUES
     ('SP', 'São Paulo'),
     ('TO','Tocantins');
     
+INSERT INTO cidade VALUES
+	(1, 'AC', 'Rio Branco'),
+    (2, 'AL', 'Maceió'),
+    (3, 'AP', 'Macapá'),
+    (4, 'AM', 'Manaus'),
+    (5, 'BA', 'Salvador'),
+    (6, 'CE', 'Fortaleza'),
+    (7, 'DF', 'Brasília'),
+    (8, 'ES', 'Vitória'),
+    (9, 'GO', 'Goiânia'),
+    (10, 'MA', 'São Luís'),
+    (11, 'MT', 'Cuiabá'),
+    (12, 'MS', 'Campo Grande'),
+    (13, 'MG', 'Belo Horizonte'),
+    (14, 'PA', 'Belém'),
+    (15, 'PB', 'Jõao Pessoa'),
+    (16, 'PR', 'Curitiba'),
+    (17, 'PE', 'Recife'),
+    (18, 'PI', 'Teresina'),
+    (19, 'RJ', 'Rio de Janiero'),
+    (20, 'RN', 'Natal'),
+    (21, 'RS', 'Porto Alegre'),
+    (22, 'RO', 'Porto Velho'),
+    (23, 'RR', 'Roraima'),
+    (24, 'SC', 'Florianópolis'),
+    (25, 'SE', 'Aracaju'),
+    (26, 'SP', 'São Paulo'),
+    (27, 'TO', 'Palmas');
     
-
+INSERT INTO status_pedido VALUES
+	(1, 'Concluído'),
+    (2, 'Cancelado'),
+    (3, 'Aberto');
     
-SELECT * FROM estado;
+INSERT INTO categoria_produto VALUES
+	(1, 'Mobilidade'),
+    (2, 'CIntas e Colares'),
+    (3, 'Equipamentos de Segurança'),
+    (4, 'Equipamentos para Banho'),
+    (5, 'Colchões e Almofadas'),
+    (6, 'Órteses e Próteses');
 
 
 
