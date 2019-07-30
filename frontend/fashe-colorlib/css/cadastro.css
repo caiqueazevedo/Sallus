@@ -1,0 +1,29 @@
+.container-fluid{
+    background-color: rgba(172, 222, 215, 0.99); 
+   
+    }
+    
+    
+    body  {
+      background-color: #ebe6e6;
+    }
+    form {
+      background-color: white;
+    }
+    
+    form{
+      width: 100%;
+      max-width: 330px;
+      padding: 15px;
+      margin: auto;
+    }
+    h3 {
+      font-family: 'Varela Round', sans-serif;
+    }
+    .btn-primary {
+      justify-content: flex-start;
+      line-height: 1;
+      display: inline-block;
+      width: auto;
+      min-width: 142px;
+    }

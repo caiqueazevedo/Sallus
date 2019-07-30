@@ -1,17 +1,22 @@
-html,
-body {
-  height: 100%;
+
+
+.container-fluid{
+  background-color: rgba(172, 222, 215, 0.99); 
+ 
+  }
+
+  body{
+  background-color: #ebe6e6;
 }
 
-body {
+.text-center {
   display: -ms-flexbox;
   display: flex;
   -ms-flex-align: center;
   align-items: center;
   padding-top: 40px;
   padding-bottom: 40px;
-  background-color: #f5f5f5;
-}
+  }
 
 .form-signin {
   width: 100%;
