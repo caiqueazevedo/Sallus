@@ -3268,7 +3268,7 @@ TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
 .m-text13 {
 	font-family: Montserrat-Regular;
 	font-size: 18px;
-	color: white;
+	color: black;
 	line-height: 1.8;
 }
 
@@ -3379,7 +3379,7 @@ TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
 .l-text1 {
 	font-family: Montserrat-Bold;
 	font-size: 50px;
-	color: white;
+	color: black;
 	line-height: 1.2;
 	text-transform: uppercase;
 	letter-spacing: 3px;
@@ -3388,7 +3388,7 @@ TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
 .l-text2 {
 	font-family: Montserrat-Bold;
 	font-size: 50px;
-	color: white;
+	color: black;
 	line-height: 1.2;
 	text-transform: uppercase;
 }
