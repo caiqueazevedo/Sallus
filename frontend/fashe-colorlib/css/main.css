@@ -1763,6 +1763,12 @@ iframe {
   width: calc(100% / 5);
   height: 269.8px;
 }
+.block5 {
+  position: relative;
+  overflow: hidden;
+  width: calc(100% / 6);
+}
+
 
 @media (max-width: 1360px) {
   .block4 {
