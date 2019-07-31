@@ -1,0 +1,21 @@
+<div class="col-md-6">
+  <h2 class="text-center">Editar Produto</h2>
+  <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="nome">Nome:</label>
+      <input type="text" formControlName="nome" name="nome" class="form-control" id="nome">
+    </div>
+
+    <div class="form-group">
+      <label for="valor">Valor:</label>
+      <input formControlName="valor" name="valor" class="form-control" id="valor">
+    </div>
+
+    <div class="form-group">
+      <label for="descricao">Descrição:</label>
+      <input formControlName="descricao" name="descricao" class="form-control" id="descricao">
+    </div>
+
+    <button class="btn btn-success">Atualizar</button>
+  </form>
+</div>

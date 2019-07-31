@@ -19,7 +19,7 @@ export class ProdutoService {
   createProduto(pessoa:Object): Observable<Object> {
     return this.http.post(`${this.baseUrl}`, pessoa);
   }
-  updatePrduto(id: number, value: any): Observable<Object> {
+  updateProduto(id: number, value: any): Observable<Object> {
     return this.http.put(`${this.baseUrl}/${id}`, value);
   }
   deleteProduto(id: number): Observable<Object> {
